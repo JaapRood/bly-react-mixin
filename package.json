@@ -1,0 +1,29 @@
+{
+  "name": "bly-react-mixin",
+  "version": "1.0.0",
+  "description": "React mixin to easily integrate with the Bly flux framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js | tap-spec"
+  },
+  "keywords": [
+    "bly",
+    "react",
+    "react-mixin"
+  ],
+  "homepage": "https://github.com/JaapRood/bly-react-mixin",
+  "author": {
+    "name": "Jaap van Hardeveld",
+    "email": "jaap@jaaprood.nl",
+    "url": "http://jaaprood.nl"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JaapRood/bly-react-mixin.git"
+  },
+  "devDependencies": {
+    "tap-spec": "^1.0.1",
+    "tape": "^3.0.1"
+  }
+}
