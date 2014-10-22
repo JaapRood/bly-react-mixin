@@ -23,6 +23,7 @@
     "url": "git://github.com/JaapRood/bly-react-mixin.git"
   },
   "devDependencies": {
+    "extend-object": "^1.0.0",
     "tap-spec": "^1.0.1",
     "tape": "^3.0.1"
   }

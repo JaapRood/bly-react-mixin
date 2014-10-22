@@ -3,34 +3,34 @@ var createAppContextMixin = require('react-app-context-mixin');
 var slice = Array.prototype.slice;
 
 var mixin = createAppContextMixin(function(props) {
-	if (!props.app) {
-		throw new Error("Can't find the Bly App to which this component belongs");
-	}
+	assertBlyFound(props);
 
 	return {
-		app: props.app
+		bly: props.bly
 	};
 }, 'appContext');
 
 mixin.stores = function(name) {
 	var context = this.getAppContext();
-	if (!context.app) {
-		throw new Error("Can't find the Bly App to which this component belongs");
-	}
+	assertBlyFound(context);
 
 	if (typeof name !== 'string') {
 		throw new Error("Name of store (or function with 'storeName' prop) required to retrieve a store");
 	}
 
-	return context.app.stores(name);
+	return context.bly.stores(name);
 };
 
-mixin.intentTo = function(actionNameOrCreator) {
-	var context = this.getAppContext(),
-		app = context.app,
-		args = slice.call(arguments, 1); // get rid of the first argument
+mixin.inject = function(actionNameOrCreator) {
+	var context = this.getAppContext();
+
+	assertBlyFound(context);
+
+	var app = context.bly,
+		args = slice.call(arguments); // get rid of the first argument
 
 	if (typeof actionNameOrCreator === 'function') {
+		args = slice.call(args, 1);
 		args.unshift(app);
 
 		actionNameOrCreator.apply(null, args);
@@ -40,5 +40,11 @@ mixin.intentTo = function(actionNameOrCreator) {
 
 	return;	
 };
+
+function assertBlyFound(context) {
+	if (!context.bly) {
+		throw new Error("Can't find the Bly App to which this component belongs. Make sure to pass a reference to your app to your top-level component using the 'bly' prop");
+	}
+} 
 
 module.exports = mixin;
