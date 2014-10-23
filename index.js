@@ -43,6 +43,11 @@ mixin._getBly = function() {
 	return context.bly;
 };
 
+// alias for cloneWithContext
+mixin.cloneWithBly = function() {
+	return this.cloneWithContext.apply(this, arguments);
+};
+
 function assertBlyFound(context) {
 	if (!context.bly) {
 		throw new Error("Can't find the Bly App to which this component belongs. Make sure to pass a reference to your app to your top-level component using the 'bly' prop");
