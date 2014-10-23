@@ -11,22 +11,17 @@ var mixin = createAppContextMixin(function(props) {
 }, 'appContext');
 
 mixin.stores = function(name) {
-	var context = this.getAppContext();
-	assertBlyFound(context);
+	var app = this._getBly();
 
 	if (typeof name !== 'string') {
 		throw new Error("Name of store (or function with 'storeName' prop) required to retrieve a store");
 	}
 
-	return context.bly.stores(name);
+	return app.stores(name);
 };
 
 mixin.inject = function(actionNameOrCreator) {
-	var context = this.getAppContext();
-
-	assertBlyFound(context);
-
-	var app = context.bly,
+	var app = this._getBly(),
 		args = slice.call(arguments); // get rid of the first argument
 
 	if (typeof actionNameOrCreator === 'function') {
@@ -39,6 +34,13 @@ mixin.inject = function(actionNameOrCreator) {
 	}
 
 	return;	
+};
+
+mixin._getBly = function() {
+	var context = this.getAppContext();
+	assertBlyFound(context);
+
+	return context.bly;
 };
 
 function assertBlyFound(context) {
