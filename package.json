@@ -26,5 +26,8 @@
     "extend-object": "^1.0.0",
     "tap-spec": "^1.0.1",
     "tape": "^3.0.1"
+  },
+  "dependencies": {
+    "react-app-context-mixin": "^1.0.2"
   }
 }
