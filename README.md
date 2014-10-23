@@ -1,4 +1,4 @@
-# React mixin to easily integrate with the Bly flux framework
+# React mixin to easily integrate with the Bly flux framework [![Build Status](https://travis-ci.org/JaapRood/bly-react-mixin.svg?branch=master)](https://travis-ci.org/JaapRood/bly-react-mixin)
 
 [Bly](https://github.com/JaapRood/bly) and [React](http://reactjs.org) make for a really good couple, it's what Bly was designed with in mind. This mixin is the glue to their relationship, letting you access stores and dispatch actions from your React components.
 
