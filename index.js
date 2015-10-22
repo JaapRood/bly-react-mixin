@@ -36,6 +36,20 @@ mixin.inject = function(actionNameOrCreator) {
 	return;	
 };
 
+mixin.subscribe = function() {
+	var app = this._getBly();
+
+	this._blyUnsubscribe = app.render.apply(app, arguments);
+
+	return this._blyUnsubscribe;
+};
+
+mixin.componentWillUnmount = function() {
+	if (!this._blyUnsubscribe) return;
+
+	this._blyUnsubscribe();
+};
+
 mixin._getBly = function() {
 	var context = this.getAppContext();
 	assertBlyFound(context);
